@@ -1,6 +1,6 @@
 #include "maze.h"
 
-SDL_Texture* loadTexture(SDL_Insance* inst, const char* path, bool useColorKey)
+SDL_Texture* loadTexture(SDL_Instance *inst, const char* path, bool useColorKey)
 {
 	SDL_Texture *newTexture = NULL;
 	SDL_Surface* Swindow = SDL_GetWindowSurface(inst->window);

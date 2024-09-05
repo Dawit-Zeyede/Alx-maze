@@ -6,7 +6,7 @@
   */
 float degToRad(int a)
 {
-	pa_Rad = a * M_PI / 180;
+	float pa_Rad = a * M_PI / 180;
 	return (pa_Rad);
 }
 /**
@@ -35,13 +35,12 @@ bool isWall(float x, float y)
 	int mapIndex = mapYIndex * mapS + mapXIndex;
 
 	if ((mapYIndex >= 0
-				&& mapYIndex < MapY
+				&& mapYIndex < mapY
 				&& mapXIndex >= 0
-				&& mapXIndex < MapX
+				&& mapXIndex < mapX
 				&& map[mapIndex]) == 1)
 		return (true);
-	else
-		return (false);
+	return (false);
 }
 /**
   * Buttons - change the player posion and angle accordingly
@@ -100,5 +99,7 @@ void Buttons(SDL_Keycode key)
   */
 
 float distance(float ax, float ay, float bx, float by, float ang)
-	return (cos(degToRad(ang)) * (bx - ax) - sin(degToRad(ang)) * (by - ay));
-
+{
+	float dis = (cos(degToRad(ang)) * (bx - ax) - sin(degToRad(ang)) * (by - ay));
+	return (dis);
+}

@@ -1,10 +1,25 @@
 #include "maze.h"
+
+// Definitions
+SDL_Rect viewport3D;
+SDL_Rect mapViewport;
+SDL_Texture* enemyTexture = NULL;
+SDL_Texture* weaponTexture = NULL;
+SDL_Texture* groundTexture = NULL;
+SDL_Texture* wallTexture = NULL;
+float headBob = 0;
+float px = 0, py = 0, pdx = 0, pdy = 0, pa = 0;
+bool walking = false;
+bool showMap = true;
+int map[mapX * mapY];
+
+
 /**
   * init - initilize the SDL2 and creates win and renderer.
   * @inst: SDL_Instance constisting of both win and renderer.
   * Return: true with success.
   */
-bool init(SDL_Insance *inst)
+bool init(SDL_Instance *inst)
 {
 	bool success = true;
 
@@ -44,4 +59,25 @@ bool init(SDL_Insance *inst)
 	pdx = cos(degToRad(pa));
 	pdy = -sin(degToRad(pa));
 	return (success);
+}
+void initi()
+{
+
+
+	px = 20;
+	py = 20;
+	pa = -45;
+	pdx = cos(degToRad(pa));
+	pdy = -sin(degToRad(pa));
+	showMap = true;
+	walking = false;
+	mapViewport.x = 0;
+	mapViewport.y = 0;
+	mapViewport.w = mapX * mapS;
+	mapViewport.h = mapY * mapS;
+
+	viewport3D.x = mapX * mapS;
+	viewport3D.y = 0;
+	viewport3D.w = screenWidth - mapX * mapS;
+	viewport3D.h = screenHeight;
 }

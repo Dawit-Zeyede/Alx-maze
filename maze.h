@@ -2,7 +2,7 @@
 #define MAZE_H
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_Image.h>
+#include <SDL2/SDL_image.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -20,7 +20,7 @@ typedef struct
 {
     SDL_Window *window;
     SDL_Renderer *renderer;
-} SDL_Insance;
+} SDL_Instance;
 
 typedef struct
 {
@@ -31,29 +31,29 @@ typedef struct
     int side;
 } RayHit;
 
-int map[mapX * mapY];
-bool showMap = true;
-bool walking = false;
-float px, py, pdx, pdy, pa;
-float headBob = 0;
-SDL_Texture* wallTexture;
-SDL_Texture* groundTexture;
-SDL_Texture* weaponTexture;
-SDL_Texture* enemyTexture;
-SDL_Rect mapViewport = {0, 0, mapX * mapS, mapY * mapS};
-SDL_Rect viewport3D = { mapX * mapS, 0, screenWidth - mapX * mapS, screenHeight };
+extern int map[mapX * mapY];
+extern bool showMap;
+extern bool walking;
+extern float px, py, pdx, pdy, pa;
+extern float headBob;
+extern SDL_Texture* wallTexture;
+extern SDL_Texture* groundTexture;
+extern SDL_Texture* weaponTexture;
+extern SDL_Texture* enemyTexture;
+extern SDL_Rect mapViewport;
+extern SDL_Rect viewport3D;
 
-SDL_Instance *init();
+bool init(SDL_Instance *inst);
 float degToRad(int a);
 int FixAng(int a);
 void drawMap2D(SDL_Renderer *renderer);
 bool isWall(float x, float y);
-bool parseMap(cost char *mapFile);
+bool parseMap(const char *mapFile);
 void movePlayer(float dx, float dy);
 void drawPlayer2D(SDL_Renderer *renderer);
 void Buttons(SDL_Keycode key);
 float distance(float ax, float ay, float bx, float by, float ang);
-SDL_Texture *loadTexture(SDL_Renderer *renderer, const char *path, bool useColorkey);
+SDL_Texture *loadTexture(SDL_Instance *inst, const char *path, bool useColorkey);
 void drawRays(SDL_Renderer *renderer);
 void RayDistance(RayHit *hit, float rx, float ry, float xo, float yo, float ra);
 RayHit VerticalIntersection(float ra);
@@ -61,6 +61,7 @@ RayHit HorizontalIntersection(float ra);
 void WallTexture(SDL_Renderer* renderer, int r, int lineOff, int lineH, int wallslice, int side);
 void drawWeaponAndEnemies(SDL_Renderer *renderer);
 void drawbasics(SDL_Renderer *renderer);
-void close(SDL_Insance inst);
+void initi();
+void close(SDL_Instance inst);
 
 #endif

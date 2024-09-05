@@ -7,13 +7,15 @@
   */
 int main(int argc, char *argv[])
 {
-	SDL_Insance inst;
+	SDL_Instance inst;
 	SDL_Event e;
 	bool quit = false;
 
-	if (argc < 2)
+	if ((argc < 2))
+	{
 		if (!parseMap(DEFAULTMAP))
 			return (1);
+	}
 	else
 	{
 		if (!parseMap(argv[1]))
@@ -21,6 +23,7 @@ int main(int argc, char *argv[])
 	}
 	if (!(init(&inst)))
 		return (1);
+	initi();
 	while (!quit)
 	{
 		while (SDL_PollEvent(&e) != 0)

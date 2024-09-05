@@ -16,7 +16,7 @@ void drawPlayer2D(SDL_Renderer *renderer)
   */
 void drawMap2D(SDL_Renderer *renderer)
 {
-	int x, int y, int x0, int y0;
+	int x, y, x0, y0;
 
 	for (y = 0; y < mapY; y++)
 	{
@@ -32,7 +32,7 @@ void drawMap2D(SDL_Renderer *renderer)
 			y0 = y * mapS;
 			SDL_Rect rect = { x0, y0, mapS - 2, mapS - 2 };
 
-			SDK_RenderFillRect(renderer, &rect);
+			SDL_RenderFillRect(renderer, &rect);
 		}
 	}
 }

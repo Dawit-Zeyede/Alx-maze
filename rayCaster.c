@@ -222,7 +222,7 @@ void drawRays(SDL_Renderer* renderer)
 		int lineOff = (screenHeight / 2) - (lineH >> 1) + (int)(headBob * 5);
 		if (lineH > (screenHeight - 85))
 			lineH =screenHeight;
-		renderWallTexture(renderer, r, lineOff, lineH, wallslice, side);
+		WallTexture(renderer, r, lineOff, lineH, wallslice, side);
 		ra = FixAng(ra - 1);
 	}
 	drawWeaponAndEnemies(renderer);

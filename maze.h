@@ -9,6 +9,12 @@
 #define mapY 8
 #define mapS 64
 
+typedef struct SDL_Instance =
+{
+	SDL_Window *window;
+	SDL_Renderer *renderer;
+}SDL_Instance;
+
 int map[] = 
 {
 	1, 1, 1, 1, 1, 1, 1, 1,
@@ -21,11 +27,14 @@ int map[] =
 	1, 1, 1, 1, 1, 1, 1, 1
 };
 
-float px, py, pdx, pdy, pa;
+float px = 20;
+float py = 20;
+float pdx;
+float pdy;
 SDL_Texture *wallTexture;
 SDL_Texture *groundTexture;
 
-void init();
+SDL_Instance *init();
 float degToRad(int a);
 int FixAng(int a);
 void drawMap2D(SDL_Renderer *renderer);

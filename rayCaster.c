@@ -81,44 +81,32 @@ void drawBasics(SDL_Renderer *renderer)
 	SDL_RenderCopy(renderer, groundTex, NULL, &floor);
 }
 /**
-  * drawRays - weapon and enemy.
-  * @renderer: rendering material.
-  */
+ * drawRays - Draws rays and handles weapon and enemy rendering.
+ * @renderer: SDL renderer for drawing.
+ */
 void drawRays(SDL_Renderer *renderer)
 {
 	drawBasics(renderer);
 	float vx, vy, r, rx, ry, ra, disV, disH;
 	int side, wallslice = screenWidth / NumRays;
-
 	ra = FixAng(pa + 30);
+
 	for (r = 0; r < NumRays; r++)
 	{
-		RayHit verticalHit = VerticalIntersection(ra);
-
-		vx = verticalHit.rx;
-		vy = verticalHit.ry;
-		disV = verticalHit.distance;
-		RayHit horizontalHit = HorizontalIntersection(ra);
-
-		rx = horizontalHit.rx;
-		ry = horizontalHit.ry;
-		disH = horizontalHit.distance;
-		side = horizontalHit.side;
+		RayHit vHit = VerticalIntersection(ra), hHit = HorizontalIntersection(ra);
+		vx = vHit.rx, vy = vHit.ry, disV = vHit.distance;
+		rx = hHit.rx, ry = hHit.ry, disH = hHit.distance, side = hHit.side;
 		SDL_SetRenderDrawColor(renderer, 0, 204, 0, 255);
 		if (disV < disH)
 		{
-			rx = vx;
-			ry = vy;
-			disH = disV;
+			rx = vx, ry = vy, disH = disV;
 			SDL_SetRenderDrawColor(renderer, 0, 153, 0, 255);
-			side = verticalHit.side;
+			side = vHit.side;
 		}
 		if (showMap)
 			SDL_RenderDrawLine(renderer, (int)px, (int)py, (int)rx, (int)ry);
-		int ca = FixAng(pa - ra);
-
-		disH = disH * cos(degToRad(ca));
-		int lineH = (mapS * (screenHeight - 85)) / disH;
+		int ca = FixAng(pa - ra), lineH = (mapS * (screenHeight - 85)) / disH;
+		disH *= cos(degToRad(ca));
 		int lineOff = (screenHeight / 2) - (lineH >> 1) + (int)(headBob * 5);
 
 		if (lineH > (screenHeight - 85))

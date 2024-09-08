@@ -1,6 +1,6 @@
 #include "maze.h"
 
-SDL_Texture* loadTexture(SDL_Instance *inst, const char* path, bool useColorKey)
+SDL_Texture* loadTexture(SDL_Instance *inst, const char* path, bool useCKey)
 {
 	SDL_Texture *newTexture = NULL;
 	SDL_Surface* Swindow = SDL_GetWindowSurface(inst->window);
@@ -11,7 +11,7 @@ SDL_Texture* loadTexture(SDL_Instance *inst, const char* path, bool useColorKey)
 		printf("Unable to load image %s! SDL_Error: %s\n", path, SDL_GetError());
 		return NULL;
 	}
-	if (useColorKey)
+	if (useCKey)
 		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 124, 125, 125));
 	SDL_Surface *optimizedSurface = SDL_ConvertSurface(loadedSurface, Swindow->format, 0);
 	if (optimizedSurface == NULL)
@@ -21,7 +21,7 @@ SDL_Texture* loadTexture(SDL_Instance *inst, const char* path, bool useColorKey)
 	}
 	else
 	{
-		if (useColorKey)
+		if (useCKey)
 		{
 			SDL_SetColorKey(optimizedSurface, SDL_TRUE, SDL_MapRGB(optimizedSurface->format, 255, 255, 255));
 		}

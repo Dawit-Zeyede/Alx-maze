@@ -15,20 +15,37 @@
 #define screenHeight 512
 #define DEFAULTMAP "default_map.txt"
 
-
-typedef struct
+/**
+  * struct SDL_Instance - Holds the SDL window and renderer.
+  * @window: pointer to the SDL window where rendering occurs.
+  * @renderer: Pointert to the SDL renderer used to draw within the window.
+  *
+  * It is used to manage SDL window and renderer together.
+  */
+typedef struct SDL_Instance
 {
-    SDL_Window *window;
-    SDL_Renderer *renderer;
+	SDL_Window *window;
+	SDL_Renderer *renderer;
 } SDL_Instance;
-
-typedef struct
+/**
+  * struct RayHit - Structure to manage all of the ray character.
+  * @rx: ray X
+  * @ry: ray Y
+  * @mx: grid pos X
+  * @my: grid pos Y
+  * @dof: try it 8 times as there is 8 grid.
+  * @distance: Calculated distance.
+  * @side: top/bottom or right/left
+  *
+  * This holds info about ther ray at a specific point.
+  */
+typedef struct RayHit
 {
-    float rx, ry;
-    int mx, my;
-    int dof;
-    float distance;
-    int side;
+	float rx, ry;
+	int mx, my;
+	int dof;
+	float distance;
+	int side;
 } RayHit;
 
 extern int map[mapX * mapY];
@@ -36,12 +53,12 @@ extern bool showMap;
 extern bool walking;
 extern float px, py, pdx, pdy, pa;
 extern float headBob;
-extern SDL_Texture* wallTexture;
-extern SDL_Texture* groundTexture;
-extern SDL_Texture* weaponTexture;
-extern SDL_Texture* enemyTexture;
-extern SDL_Rect mapViewport;
-extern SDL_Rect viewport3D;
+extern SDL_Texture *wallTex;
+extern SDL_Texture *groundTex;
+extern SDL_Texture *weaponTex;
+extern SDL_Texture *enemyTex;
+extern SDL_Rect mapView;
+extern SDL_Rect 3Dview;
 
 bool init(SDL_Instance *inst);
 float degToRad(int a);
@@ -53,15 +70,15 @@ void movePlayer(float dx, float dy);
 void drawPlayer2D(SDL_Renderer *renderer);
 void Buttons(SDL_Keycode key);
 float distance(float ax, float ay, float bx, float by, float ang);
-SDL_Texture *loadTexture(SDL_Instance *inst, const char *path, bool useColorkey);
+SDL_Texture *loadTexture(SDL_Instance *inst, const char *path, bool useCkey);
 void drawRays(SDL_Renderer *renderer);
-void RayDistance(RayHit *hit, float rx, float ry, float xo, float yo, float ra);
+void RayDis(RayHit *hit, float rx, float ry, float xo, float yo, float ra);
 RayHit VerticalIntersection(float ra);
 RayHit HorizontalIntersection(float ra);
-void WallTexture(SDL_Renderer* renderer, int r, int lineOff, int lineH, int wallslice, int side);
+void Wtexture(SDL_Renderer *ren, int r, int LOff, int LiH, int Wsli, int side);
 void drawWeaponAndEnemies(SDL_Renderer *renderer);
 void drawbasics(SDL_Renderer *renderer);
-void initi();
+void initi(void);
 void close(SDL_Instance inst);
 
 #endif

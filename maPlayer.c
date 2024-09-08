@@ -50,4 +50,4 @@ void movePlayer(float dx, float dy)
 		px = newX;
 	if (!isWall(px, newY))
 		py = newY;
-}
+

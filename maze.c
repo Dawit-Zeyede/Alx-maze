@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 		SDL_RenderClear(inst.renderer);
 		if (showMap)
 		{
-			SDL_RenderSetViewport(inst.renderer, &mapViewport);
+			SDL_RenderSetViewport(inst.renderer, &mapView);
 			drawMap2D(inst.renderer);
 			drawPlayer2D(inst.renderer);
 		}
@@ -48,4 +48,4 @@ int main(int argc, char *argv[])
 	}
 	close(inst);
 	return (0);
-}
+

@@ -7,6 +7,7 @@
 float degToRad(int a)
 {
 	float pa_Rad = a * M_PI / 180;
+
 	return (pa_Rad);
 }
 /**
@@ -101,5 +102,6 @@ void Buttons(SDL_Keycode key)
 float distance(float ax, float ay, float bx, float by, float ang)
 {
 	float dis = (cos(degToRad(ang)) * (bx - ax) - sin(degToRad(ang)) * (by - ay));
+
 	return (dis);
 }

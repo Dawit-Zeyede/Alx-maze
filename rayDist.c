@@ -1,6 +1,7 @@
 #include "maze.h"
 /**
   * RayDist - calculate and updates the distance and poistion.
+  * @hit: Data type for ray info.
   * @rx: position X
   * @ry: position Y
   * @xo: increment X

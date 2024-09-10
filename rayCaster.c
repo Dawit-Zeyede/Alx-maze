@@ -1,6 +1,7 @@
 #include "maze.h"
 /**
   * Wtexture - render the wall.
+  * @ren: rendering tool.
   * @r: rayIndex
   * @LOff: Y of wall slice
   * @LiH: X of wall slice
@@ -89,11 +90,12 @@ void drawRays(SDL_Renderer *renderer)
 	drawBasics(renderer);
 	float vx, vy, r, rx, ry, ra, disV, disH;
 	int side, wallslice = screenWidth / NumRays;
-	ra = FixAng(pa + 30);
 
+	ra = FixAng(pa + 30);
 	for (r = 0; r < NumRays; r++)
 	{
 		RayHit vHit = VerticalIntersection(ra), hHit = HorizontalIntersection(ra);
+
 		vx = vHit.rx, vy = vHit.ry, disV = vHit.distance;
 		rx = hHit.rx, ry = hHit.ry, disH = hHit.distance, side = hHit.side;
 		SDL_SetRenderDrawColor(renderer, 0, 204, 0, 255);
@@ -105,8 +107,10 @@ void drawRays(SDL_Renderer *renderer)
 		}
 		if (showMap)
 			SDL_RenderDrawLine(renderer, (int)px, (int)py, (int)rx, (int)ry);
-		int ca = FixAng(pa - ra), lineH = (mapS * (screenHeight - 85)) / disH;
+		int ca = FixAng(pa - ra);
+
 		disH *= cos(degToRad(ca));
+		int lineH = (mapS * (screenHeight - 85)) / disH;
 		int lineOff = (screenHeight / 2) - (lineH >> 1) + (int)(headBob * 5);
 
 		if (lineH > (screenHeight - 85))

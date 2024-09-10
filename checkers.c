@@ -33,7 +33,7 @@ bool isWall(float x, float y)
 {
 	int mapXIndex = (int)(x) / mapS;
 	int mapYIndex = (int)(y) / mapS;
-	int mapIndex = mapYIndex * mapS + mapXIndex;
+	int mapIndex = mapYIndex * mapX + mapXIndex;
 
 	if ((mapYIndex >= 0
 				&& mapYIndex < mapY

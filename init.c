@@ -59,7 +59,7 @@ bool init(SDL_Instance *inst)
 	pdy = -sin(degToRad(pa));
 	return (success);
 }
-void initi()
+void initi(void)
 {
 	px = 20;
 	py = 20;

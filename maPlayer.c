@@ -22,7 +22,7 @@ void drawMap2D(SDL_Renderer *renderer)
 	{
 		for (x = 0; x < mapX; x++)
 		{
-			int mapIndex = y * mapS + x;
+			int mapIndex = y * mapX + x;
 
 			if (map[mapIndex] == 1)
 				SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -50,4 +50,4 @@ void movePlayer(float dx, float dy)
 		px = newX;
 	if (!isWall(px, newY))
 		py = newY;
-
+}

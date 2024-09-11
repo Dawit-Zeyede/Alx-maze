@@ -52,9 +52,9 @@ bool init(SDL_Instance *inst)
 		printf("SDL_image Error: %s\n", IMG_GetError());
 		return (false);
 	}
-	wallTex = loadTexture(inst, "download.jpg", false);
-	weaponTex = loadTexture(inst, "weapon_texture2.jpg", true);
-	groundTex = loadTexture(inst, "ground_texture.bmp", false);
+	wallTex = loadTexture(inst, "images/download.jpg", false);
+	weaponTex = loadTexture(inst, "images/weapon_texture2.jpg", true);
+	groundTex = loadTexture(inst, "images/ground_texture.bmp", false);
 	pdx = cos(degToRad(pa));
 	pdy = -sin(degToRad(pa));
 	return (success);

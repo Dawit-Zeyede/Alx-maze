@@ -16,15 +16,11 @@ int main(int argc, char *argv[])
 		if (!parseMap(DEFAULTMAP))
 			return (1);
 	}
-	else
-	{
-		if (!parseMap(argv[1]))
-			return (1);
-	}
+	else if (!parseMap(argv[1]))
+		return (1);
 	if (!(init(&inst)))
 		return (1);
-	else
-		initi();
+	initi();
 	while (!quit)
 	{
 		while (SDL_PollEvent(&e) != 0)

@@ -1,6 +1,6 @@
 #include "maze.h"
 
-SDL_Rect 3Dview;
+SDL_Rect view3D;
 SDL_Rect mapView;
 SDL_Texture *enemyTex = NULL;
 SDL_Texture *weaponTex = NULL;
@@ -55,10 +55,11 @@ bool init(SDL_Instance *inst)
 	wallTex = loadTexture(inst, "images/download.jpg", false);
 	weaponTex = loadTexture(inst, "images/weapon_texture2.jpg", true);
 	groundTex = loadTexture(inst, "images/ground_texture.bmp", false);
-	pdx = cos(degToRad(pa));
-	pdy = -sin(degToRad(pa));
 	return (success);
 }
+/**
+  * initi - intilizer.
+  */
 void initi(void)
 {
 	px = 20;
@@ -74,8 +75,8 @@ void initi(void)
 	mapView.w = mapX * mapS;
 	mapView.h = mapY * mapS;
 
-	3Dview.x = mapX * mapS;
-	3Dview.y = 0;
-	3Dview.w = screenWidth - mapX * mapS;
-	3Dview.h = screenHeight;
+	view3D.x = mapX * mapS;
+	view3D.y = 0;
+	view3D.w = screenWidth - mapX * mapS;
+	view3D.h = screenHeight;
 }

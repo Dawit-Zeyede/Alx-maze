@@ -58,7 +58,7 @@ extern SDL_Texture *groundTex;
 extern SDL_Texture *weaponTex;
 extern SDL_Texture *enemyTex;
 extern SDL_Rect mapView;
-extern SDL_Rect 3Dview;
+extern SDL_Rect view3D;
 
 bool init(SDL_Instance *inst);
 float degToRad(int a);

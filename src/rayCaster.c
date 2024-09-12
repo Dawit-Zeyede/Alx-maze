@@ -60,8 +60,8 @@ void drawBasics(SDL_Renderer *renderer)
 		int c1X = mapX * mapS;
 		int c2Y = mapY * mapS;
 		int c1W = screenWidth - c1X;
-		int c2H = screenHeight - C2Y;
-		SDL_Rect ceiling1 = { c1X, 0, c1W, c1Y };
+		int c2H = screenHeight - c2Y;
+		SDL_Rect ceiling1 = { c1X, 0, c1W, c2Y };
 		SDL_Rect ceiling2 = {0, c2Y, screenWidth, c2H};
 
 		mapView.h = c2Y;

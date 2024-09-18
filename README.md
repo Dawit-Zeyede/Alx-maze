@@ -78,7 +78,7 @@ Please ensure that your contributions align with the project's coding style and 
 
 Here are some related projects that complement or extend the MAZE project:
 
-- [Alx-maze_landing](https://github.com/Dawit-Zeyede/Alx-maze_landing) - An additional project exploring more advanced features and enhancements related to the MAZE game.
+- [Alx-maze_landing](https://github.com/Dawit-Zeyede/Alx-maze_landing) - A More detailed and expressive landing page for the Maze project.
 
 ## 📜 Licensing
 

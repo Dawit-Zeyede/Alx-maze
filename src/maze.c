@@ -11,38 +11,38 @@ int main(int argc, char *argv[])
 	SDL_Event e;
 	bool quit = false;
 
-	if ((argc < 2))
+	if ((argc < 2)) /* Check for command line arguments */
 	{
-		if (!parseMap(DEFAULTMAP))
+		if (!parseMap(DEFAULTMAP)) /* Use default map */
 			return (1);
 	}
-	else if (!parseMap(argv[1]))
+	else if (!parseMap(argv[1])) /* Map file provided as argument */
 		return (1);
-	if (!(init(&inst)))
+	if (!(init(&inst))) /* Initilize SDL and create window */
 		return (1);
-	initi();
-	while (!quit)
+	initi(); /* Initialize game settings */
+	while (!quit) /* Main game loop */
 	{
-		while (SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0) /* Process SDL events */
 		{
-			if (e.type == SDL_QUIT)
+			if (e.type == SDL_QUIT) /* Exit if quit event occurs */
 				quit = true;
-			if (e.type == SDL_KEYDOWN)
+			if (e.type == SDL_KEYDOWN) /* Handle key press events */
 				Buttons(e.key.keysym.sym);
 		}
-		SDL_SetRenderDrawColor(inst.renderer, 0, 0, 0, 255);
+		SDL_SetRenderDrawColor(inst.renderer, 0, 0, 0, 255); /* Clear the renderer*/
 		SDL_RenderClear(inst.renderer);
-		if (showMap)
+		if (showMap) /* Render the 2D map if showMap is true */
 		{
 			SDL_RenderSetViewport(inst.renderer, &mapView);
 			drawMap2D(inst.renderer);
 			drawPlayer2D(inst.renderer);
 		}
-		SDL_RenderSetViewport(inst.renderer, NULL);
-		drawRays(inst.renderer);
-		SDL_RenderPresent(inst.renderer);
-		SDL_Delay(16);
+		SDL_RenderSetViewport(inst.renderer, NULL); /* Reset to full screen */
+		drawRays(inst.renderer); /* Draw rays */
+		SDL_RenderPresent(inst.renderer); /* Present the renderer */
+		SDL_Delay(16); /* Delay to control frame rate (60 FPS) */
 	}
-	close(inst);
-	return (0);
+	close(inst); /* Clean up and close SDL resources */
+	return (0); /* Success */
 }

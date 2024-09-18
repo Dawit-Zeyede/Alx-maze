@@ -7,10 +7,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define mapX  8
-#define mapY  8
-#define mapS 16
-#define NumRays 60
+#define mapX  8 /* Map row */
+#define mapY  8 /* Map coloumn */
+#define mapS 16 /* Cell size */
+#define NumRays 60 /* Number of rays */
 #define screenWidth 1024
 #define screenHeight 512
 #define DEFAULTMAP "default_map.txt"
@@ -48,6 +48,7 @@ typedef struct RayHit
 	int side;
 } RayHit;
 
+/* Global variables */
 extern int map[mapX * mapY];
 extern bool showMap;
 extern bool walking;
@@ -60,6 +61,7 @@ extern SDL_Texture *enemyTex;
 extern SDL_Rect mapView;
 extern SDL_Rect view3D;
 
+/* Function Declarations */
 bool init(SDL_Instance *inst);
 float degToRad(int a);
 int FixAng(int a);
